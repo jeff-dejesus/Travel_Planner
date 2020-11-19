@@ -1,0 +1,42 @@
+<resources>
+    <!--todo: organize strings into different xml files so that they are easier to sort out -->
+    <string name="app_name">Travel Planner</string>
+    <string name="sac_state_logo">Sac State Logo</string>
+    <string name="app_string_name">Sac State Travel Planner</string>
+
+    <!--You are able to have strings that span multiple lines without changing the text-->
+    <string name="app_string_info">
+        Every year there is tons of traffic at Sac State. The goal of this app is to reduce traffic
+        and show you alternative modes of transportation. This can help reduce traffic, carbon
+        emissions, and travel costs. Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc…
+        Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc…
+        Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc…
+        Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc…
+        Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc…
+        Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc…
+        Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc… Etc…
+        End of text
+    </string>
+    <string name="go">Start>></string>
+    <string name="skip">Skip>></string>
+    <string name="location_prompt">Please Enter your Location</string>
+    <string name="submitInput"><![CDATA[Go>>]]></string>
+    <string name="getBudget">Budget (Optional)</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="temp_display_data">This activity will display the data for the mode of transportation that the user selects</string>
+    <string name="temp_planner">This Activity is where you can create a travel plan</string>
+    <string name="temp_comparison">This activity will allow the user to compare the different modes of transportation</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="car">car</string>
+    <string name="user_agreement">&lt;-I agree to <u><i>terms and conditions</i></u></string>
+    <string name="title_activity_popup">PopupActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

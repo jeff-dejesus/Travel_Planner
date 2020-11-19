@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.travelplanner_0_2_1.FragmentMenu">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/redwoodGroveGreen"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="51dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/menuToCompare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorWhite"
+                android:text="Compare plans" />
+
+            <Button
+                android:id="@+id/menuToPlanner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorWhite"
+                android:text="plan my commute" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/menuInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Different Modes of Transportation. Click on one to get more info about it"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="681dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/displayCar"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:text="@string/car" />
+
+                <Button
+                    android:id="@+id/displayMotorCycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="99dp"
+                    android:text="motorcycle" />
+
+                <Button
+                    android:id="@+id/displayTransit"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:text="transit" />
+
+                <Button
+                    android:id="@+id/displayBike"
+                    android:layout_width="match_parent"
+                    android:layout_height="82dp"
+                    android:text="bike" />
+
+                <Button
+                    android:id="@+id/displayWalk"
+                    android:layout_width="match_parent"
+                    android:layout_height="104dp"
+                    android:text="walk" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "travelPlanner_0_1_1"

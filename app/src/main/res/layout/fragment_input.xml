@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.travelplanner_0_2_1.InputFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="345dp"
+            android:layout_height="92dp"
+            android:layout_marginBottom="224dp"
+            android:layout_weight="60"
+            app:errorEnabled="true"
+            app:helperText="Estimate your annual travel budget for Sac State"
+            app:layout_constraintBottom_toTopOf="@+id/goToNext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputBudget"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="@string/getBudget"
+                android:inputType="numberDecimal"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/goToNext"
+            android:layout_width="174dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="116dp"
+            android:layout_marginBottom="80dp"
+            android:backgroundTint="@color/opaquesacStateGreen"
+            android:text="@string/skip"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

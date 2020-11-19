@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fadeScrollbars="false"
+    android:scrollbarStyle="insideInset"
+    android:verticalScrollbarPosition="right"
+    android:visibility="visible"
+    tools:context="com.example.travelplanner_0_2_1.MainFragment">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:src="@drawable/guy_west_bridge" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/logoView"
+            android:layout_width="290dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="160dp"
+            android:background="@color/colorWhite"
+            android:scaleType="centerCrop"
+            android:src="@drawable/nickname_logo" />
+
+        <ImageView
+            android:id="@+id/chromaticLineUpper"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/multi_color_bar" />
+
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:background="@color/redwoodGroveGreen"
+            android:fontFamily="@font/trajan_pro_bold"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="42sp" />
+
+        <ImageView
+            android:id="@+id/chromaticLineLower"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/multi_color_bar" />
+
+        <ScrollView
+            android:id="@+id/infoScrollView"
+            android:layout_width="357dp"
+            android:layout_height="225dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/webColor5"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="10dp"
+            android:isScrollContainer="true"
+            android:scrollbarFadeDuration="0"
+            android:fadeScrollbars="false"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarStyle="insideInset"
+            android:scrollbarThumbVertical="@android:drawable/btn_default_small"
+            android:scrollbarTrackVertical="@android:drawable/title_bar_tall"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="30dp">
+
+                <TextView
+                    android:id="@+id/appInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/lato_italic"
+                    android:padding="2sp"
+                    android:paddingStart="4sp"
+                    android:paddingTop="2sp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="2sp"
+                    android:text="@string/app_string_info"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </ScrollView>
+
+        <TableRow
+            android:layout_width="357dp"
+            android:layout_height="35dp"
+            android:background="@color/opaquesacStateGreen">
+
+            <CheckBox
+                android:id="@+id/userAgreement"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:buttonTint="@color/colorWhite"
+                android:textColor="@color/colorWhite" />
+
+            <Button
+                android:id="@+id/viewUserAgreement"
+                android:layout_width="320dp"
+                android:layout_height="34dp"
+                android:backgroundTint="@color/evergreenAsh"
+                android:fontFamily="@font/lato_italic"
+                android:gravity="center"
+                android:text="@string/user_agreement"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite" />
+        </TableRow>
+
+        <Button
+            android:id="@+id/startProgram"
+            android:layout_width="265dp"
+            android:layout_height="71dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorWhite"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/go"
+            android:textAlignment="center"
+            android:textSize="32sp" />
+
+    </LinearLayout>
+
+</FrameLayout>

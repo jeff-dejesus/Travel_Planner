@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.travelplanner_0_2_1.DisplayDataFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/sacStateGold">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/displayVehicleImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/car_image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/displayTitleVehicle"
+                    android:layout_width="299dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/trajan_pro_bold"
+                    android:text="@string/car"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="42sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/displayVehicleImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/multi_color_bar" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/redwoodGroveGreen">
+
+                <RadioButton
+                    android:id="@+id/VehicleType1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/hornetYellow"
+                    android:text="normal"
+                    android:textColor="@color/colorWhite" />
+
+                <RadioButton
+                    android:id="@+id/VehicleType2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/sacStateGold"
+                    android:text="rideshare"
+                    android:textColor="@color/colorWhite" />
+
+                <RadioButton
+                    android:id="@+id/VehicleType3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/spruceGreen"
+                    android:text="hybrid"
+                    android:textColor="@color/colorWhite" />
+
+                <RadioButton
+                    android:id="@+id/VehicleType4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/spruceGreen"
+                    android:text="electric"
+                    android:textColor="@color/colorWhite" />
+
+            </TableRow>
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/multi_color_bar" />
+
+            <TextView
+                android:id="@+id/vehicleInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:fontFamily="@font/lato"
+                android:text="@string/app_string_info"
+                android:textColor="@color/colorBlack" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/multi_color_bar" />
+
+            <TextView
+                android:id="@+id/vehicleCostInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cost"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/vehicleEmissionsInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="carbon emissions"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/vehicleDistanceInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="distance"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+            <fragment
+                android:id="@+id/mapFragment"
+                android:name="com.example.travelplanner_0_2_1.MapsFragment"
+                android:layout_width="365dp"
+                android:layout_height="262dp"
+                android:layout_gravity="center_horizontal" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/distanceFromHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorWhite"
+                    android:text="From home" />
+
+                <Button
+                    android:id="@+id/distanceFromSac"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorWhite"
+                    android:text="From Sac State" />
+            </TableRow>
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(specific data for the mode of transportation) Create own fragment for data" />
+
+            <fragment
+                android:id="@+id/fragment"
+                android:name="com.example.travelplanner_0_2_1.transportation.carFragment"
+                android:layout_width="match_parent"
+                android:layout_height="293dp" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/displayToComparison"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorWhite"
+                    android:text="compare this" />
+
+                <Button
+                    android:id="@+id/displayToPlanner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorWhite"
+                    android:text="add to my plan" />
+            </TableRow>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
