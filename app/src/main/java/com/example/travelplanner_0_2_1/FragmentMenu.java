@@ -16,8 +16,16 @@ import com.example.travelplanner_0_2_1.R;
 
 import org.jetbrains.annotations.NotNull;
 
+//read through this file to get a good understanding of how the Navigation with fragments work
 public class FragmentMenu extends Fragment implements View.OnClickListener {
 
+    /* 
+    * NavController is the object that we use to control the navigation between fragments
+    * we call its navController.navigate(action) in order to move the screen to show a different
+    * fragment.
+    * 
+    * the action paramenter is detailed below and what it does
+    */
     private NavController navController;
     private String userLocation;
     private int userBudget;
@@ -44,6 +52,7 @@ public class FragmentMenu extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //here we recieve the arguements passed from navigation they are stored in this object
         FragmentMenuArgs args = FragmentMenuArgs.fromBundle(getArguments());
 
         TextView menuInfo = view.findViewById(R.id.menuInfo);
@@ -77,6 +86,14 @@ public class FragmentMenu extends Fragment implements View.OnClickListener {
     //todo: clean up switch so less code. can take out some cases in replace of IF statement
     @Override
     public void onClick(View v) {
+        // the action is an instance of a generated class. the navigation generates the code
+        // all we have to do is reference the right Action class. All action objects are located in
+        // different generated classes. the class name is "(Class name) + Directions"
+        // then the specific direction is that .ActionFragmentXtoFragmentY we change the second part 
+        // (this refers to specific arrows on navigation/nav_graph.xml) 
+        // of the action type to navigate to different actions.
+        // The action object specifies the direction and parameters. See navigation/nav_graph.xml
+        // 
         FragmentMenuDirections.ActionFragmentMenuToDisplayDataFragment action;
        switch(v.getId()){
            case R.id.menuToCompare:
@@ -86,10 +103,15 @@ public class FragmentMenu extends Fragment implements View.OnClickListener {
                navController.navigate(R.id.action_fragmentMenu_to_travelPlannerFragment);
                break;
            case R.id.displayCar:
+               //this first line inititalizes the action. Class is same as declaration 
                action = FragmentMenuDirections.actionFragmentMenuToDisplayDataFragment();
+               
+               //we pass the parameters to the action just how setVar(var) would work on objects
+               //each parameter is "set + (parameterName)"
                action.setVehicleType("car");
                action.setUserBudget(userBudget);
                action.setUserLocation(userLocation);
+               //then we call the navController to move 
                navController.navigate(action);
                break;
            case R.id.displayMotorCycle:
