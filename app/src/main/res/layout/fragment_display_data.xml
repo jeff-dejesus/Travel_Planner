@@ -47,7 +47,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/displayDivider1"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:scaleType="fitXY"
@@ -93,7 +93,7 @@
             </TableRow>
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/displayDivider2"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:scaleType="fitXY"
@@ -109,7 +109,7 @@
                 android:textColor="@color/colorBlack" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/displayDivider3"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:scaleType="fitXY"

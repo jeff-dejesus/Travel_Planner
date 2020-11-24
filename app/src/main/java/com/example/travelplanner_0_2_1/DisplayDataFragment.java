@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ public class DisplayDataFragment extends Fragment implements View.OnClickListene
     private NavController navController;
     private ImageView displayVehicleImage;
     private TextView displayVehicleTitle;
+    private Button displayToComparison;
+    private Button displayToPlanner;
     //TODO: add in the rest of the fields of all the UI elements in Fragment
 
     @Override
@@ -40,11 +43,17 @@ public class DisplayDataFragment extends Fragment implements View.OnClickListene
 
         DisplayDataFragmentArgs args = DisplayDataFragmentArgs.fromBundle(getArguments());
 
+        //initialize buttons and add listener to all of them
+        displayToComparison = view.findViewById(R.id.displayToComparison);
+        displayToComparison.setOnClickListener(this);
+        displayToPlanner = view.findViewById(R.id.displayToPlanner);
+        displayToPlanner.setOnClickListener(this);
+
+        //initialize the rest of the components to be edited by them
         displayVehicleImage = view.findViewById(R.id.displayVehicleImage);
         displayVehicleTitle = view.findViewById(R.id.displayTitleVehicle);
-        //TODO: Initialize rest of fields here
 
-
+        //edits all the components based on what vehicle type the user clicked on
         displayData(args.getVehicleType());
 
         navController = Navigation.findNavController(view);
@@ -52,8 +61,15 @@ public class DisplayDataFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
-    public void onClick(View v) {
-        navController.navigate(R.id.action_displayDataFragment_to_travelPlannerFragment);
+    public void onClick(View view) {
+       switch (view.getId()) {
+           case R.id.displayToComparison:
+               navController.navigate(R.id.action_displayDataFragment_to_comparisonFragment);
+               break;
+           case R.id.displayToPlanner:
+               navController.navigate(R.id.action_displayDataFragment_to_travelPlannerFragment);
+               break;
+       }
     }
 
     //This is just a very long switch where we change out all the variables depending on the tab

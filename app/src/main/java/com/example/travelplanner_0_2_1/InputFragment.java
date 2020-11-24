@@ -59,10 +59,13 @@ public class InputFragment extends Fragment implements View.OnClickListener {
                 //create the navigation action
                 InputFragmentDirections.ActionInputFragmentToFragmentMenu action = InputFragmentDirections.actionInputFragmentToFragmentMenu();
                 //pass the parameters into the action
-                if(userBudget.getText().toString() != null)
-                    action.setUserBudget(Integer.parseInt(userBudget.getText().toString()));
+                String budget = userBudget.getText().toString();
+                if(!budget.matches(""))
+                    action.setUserBudget(Integer.parseInt(budget));
                 else
-                    action.setUserBudget(0);
+                    action.setUserBudget(-1);
+                //temporary parameter passing
+                //todo: get the validated address and pass it as the parameter of setUserLocation()
                 action.setUserLocation("Sac State");
                 //navigate to the destination fragment
                 navController.navigate(action);
@@ -74,6 +77,8 @@ public class InputFragment extends Fragment implements View.OnClickListener {
     //input: string address submitted by the user.
     //Output: true if address can be found on google maps
     public boolean validateAddress(String address) {
+        //put code to verify address here
+
         return address.equalsIgnoreCase("123");
     }
 }

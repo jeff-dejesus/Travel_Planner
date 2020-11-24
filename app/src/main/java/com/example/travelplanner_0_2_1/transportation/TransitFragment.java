@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.travelplanner_0_2_1.R;
 
-public class carFragment extends Fragment {
+public class TransitFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,6 @@ public class carFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_car, container, false);
+        return inflater.inflate(R.layout.fragment_transit, container, false);
     }
 }
