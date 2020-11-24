@@ -73,6 +73,8 @@ public class DisplayDataFragment extends Fragment implements View.OnClickListene
     }
 
     //This is just a very long switch where we change out all the variables depending on the tab
+    //TODO calculate data and display the data separate methods will be made to calculate
+    // different things
     public void displayData(String vehicleType){
         switch (vehicleType){
             case"car":
@@ -98,6 +100,11 @@ public class DisplayDataFragment extends Fragment implements View.OnClickListene
                 break;
 
         }
+    }
 
+    private double calculateCost(String vehicleType){
+        //calculate the cost here, use local variables from the args object
+        //todo: convert args to private variable for this class
+        return 0;
     }
 }
