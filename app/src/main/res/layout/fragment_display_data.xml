@@ -53,10 +53,12 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/multi_color_bar" />
 
-            <TableRow
+            <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/redwoodGroveGreen">
+                android:background="@color/redwoodGroveGreen"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/VehicleType1"
@@ -89,8 +91,7 @@
                     android:buttonTint="@color/spruceGreen"
                     android:text="electric"
                     android:textColor="@color/colorWhite" />
-
-            </TableRow>
+            </RadioGroup>
 
             <ImageView
                 android:id="@+id/displayDivider2"

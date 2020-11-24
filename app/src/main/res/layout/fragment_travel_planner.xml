@@ -6,9 +6,43 @@
     tools:context="com.example.travelplanner_0_2_1.TravelPlannerFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="create your plan here" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:fontFamily="@font/trajan_pro_bold"
+            android:gravity="center"
+            android:text="Create your Travel Plan"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/displayDivider1"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/multi_color_bar" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="346dp"
+            android:layout_height="wrap_content"
+            android:text="If you have not, compare the different plans first before so you can plan the best option for your commute"
+            android:textColor="@color/colorBlack" />
+
+        <Button
+            android:id="@+id/plannerToComparison"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:text="Compare transportation" />
+
+
+    </LinearLayout>
 
 </FrameLayout>
