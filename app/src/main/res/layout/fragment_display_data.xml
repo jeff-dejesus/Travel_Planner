@@ -174,7 +174,7 @@
 
             <fragment
                 android:id="@+id/fragment"
-                android:name="com.example.travelplanner_0_2_1.transportation.carFragment"
+                android:name="com.example.travelplanner_0_2_1.transportation.CarFragment"
                 android:layout_width="match_parent"
                 android:layout_height="293dp" />
 

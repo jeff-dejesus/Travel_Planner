@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.appToolbar);
+        toolbar = findViewById(R.id.appToolbar);
         setSupportActionBar(toolbar);
 
         //Todo: add ability to change the address from the toolbar by clicking on a button on the right side of toolbar which will take user back to input fragment

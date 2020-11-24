@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fadeScrollbars="false"
-    android:scrollbarStyle="insideInset"
-    android:verticalScrollbarPosition="right"
     android:visibility="visible"
     tools:context="com.example.travelplanner_0_2_1.MainFragment">
 
@@ -135,6 +132,7 @@
             android:layout_height="71dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/colorWhite"
+            android:enabled="false"
             android:fontFamily="@font/lato_bold"
             android:text="@string/go"
             android:textAlignment="center"

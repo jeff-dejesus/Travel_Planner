@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.travelplanner_0_2_1.R;
 
-public class carFragment extends Fragment {
+public class CarFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

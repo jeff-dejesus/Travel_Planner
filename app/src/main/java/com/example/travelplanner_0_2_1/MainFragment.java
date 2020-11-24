@@ -42,7 +42,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         startProgram = view.findViewById(R.id.startProgram);
         startProgram.setOnClickListener(this);
-        startProgram.setEnabled(false);
 
         userAgreement = view.findViewById(R.id.userAgreement);
         userAgreement.setChecked(false);
@@ -72,7 +71,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-
+        if(startProgram != null && userAgreement.isChecked()){
+            startProgram.setEnabled(true);
+        }
     }
 
     @Override
