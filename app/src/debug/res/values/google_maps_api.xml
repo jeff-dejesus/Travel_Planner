@@ -21,6 +21,5 @@
     string in this file.
     -->
 
-    <!--TODO: the key does not work and we need to activate a key, current key broken-->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyC3yr4dSSh5ajV_d8qdRmn5S-ZFVtTX04I</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCGAnDlG13YXNfiwZbvjt0zAbVtnVx1UdU</string>
 </resources>
