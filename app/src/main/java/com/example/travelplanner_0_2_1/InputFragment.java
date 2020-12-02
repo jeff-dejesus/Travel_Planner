@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.travelplanner_0_2_1.R;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.RectangularBounds;
+import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
@@ -29,7 +31,8 @@ public class InputFragment extends Fragment implements View.OnClickListener {
     private NavController navController;
     private Button goToNext;
     private TextView userBudget;
-    private AutocompleteSupportFragment autocompleteFragment;
+
+    private AutocompleteSupportFragment getHomeAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,23 +50,30 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         navController = Navigation.findNavController(view);
-
         goToNext = view.findViewById(R.id.goToNext);
         goToNext.setOnClickListener(this);
 
         userBudget = view.findViewById(R.id.inputBudget);
         userBudget.setOnClickListener(this);
 
+        //todo: figure out how to reference the key from the xml file to avoid having a string literal
         Places.initialize(getActivity().getApplicationContext(), "AIzaSyCGAnDlG13YXNfiwZbvjt0zAbVtnVx1UdU");
 
-        autocompleteFragment = (AutocompleteSupportFragment)
-               getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        getHomeAddress = (AutocompleteSupportFragment) getChildFragmentManager().findFragmentById(R.id.get_home_address);
 
         // Specify the types of place data to return.
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        getHomeAddress.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
+        //specifies the location to a more precise area so search results are more accurate
+        getHomeAddress.setCountries("US");
+
+        //currently restricts to sacramento but need to figure out how to restrict to california
+        getHomeAddress.setLocationRestriction(RectangularBounds.newInstance(
+                new LatLng(38.5534836, -121.4494276),
+                new LatLng(38.587359, -121.5082156)));
 
         // Set up a PlaceSelectionListener to handle the response.
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+        getHomeAddress.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(@NotNull Place place) {
                 // TODO: Get info about the selected place.
@@ -73,7 +83,6 @@ public class InputFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onError(@NotNull Status status) {
                 // TODO: Handle the error.
-
             }
         });
     }
