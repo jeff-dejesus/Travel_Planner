@@ -10,19 +10,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <fragment
+            android:id="@+id/autocomplete_fragment"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_width="351dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="56dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/getAddressFragment"
             android:name="com.example.travelplanner_0_2_1.AddressFragment"
-            android:layout_width="345dp"
-            android:layout_height="258dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="355dp"
+            android:layout_height="167dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="16dp"
             android:background="@color/sacStateGreen"
             app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/autocomplete_fragment"
+            app:layout_constraintVertical_bias="0.072"
             tools:layout="@layout/fragment_address" />
 
         <com.google.android.material.textfield.TextInputLayout

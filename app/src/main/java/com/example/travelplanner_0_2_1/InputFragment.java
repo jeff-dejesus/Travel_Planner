@@ -13,25 +13,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.travelplanner_0_2_1.R;
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
-//todo: add new google maps fragment that will display the location given that is a valid address. Default display is to display Sac State's address
-//todo: create google search bar that will verify the location. tutorial at https://www.youtube.com/watch?v=MWowf5SkiOE
-//another helpful tutorial https://stackoverflow.com/questions/45107806/autocomplete-search-bar-in-google-maps
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
+
 public class InputFragment extends Fragment implements View.OnClickListener {
 
-    /*NOTE:
-    E/Google Maps Android API: Authorization failure.  Please see https://developers.google.com/maps/documentation/android-api/start for how to correctly set up the map.
-    E/Google Maps Android API: In the Google Developer Console (https://console.developers.google.com)
-        Ensure that the "Google Maps Android API v2" is enabled.
-        Ensure that the following Android Key exists:
-    	    API Key: AIzaSyC3yr4dSSh5ajV_d8qdRmn5S-ZFVtTX04I
-    	    Android Application (<cert_fingerprint>;<package_name>): 4A:97:36:71:3A:F6:9A:94:59:54:3B:B1:63:BE:97:1E:9C:D2:CB:29;com.example.travelplanner_0_2_0
-
-     */
 
     private NavController navController;
     private Button goToNext;
     private TextView userBudget;
+    private AutocompleteSupportFragment autocompleteFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +53,29 @@ public class InputFragment extends Fragment implements View.OnClickListener {
 
         userBudget = view.findViewById(R.id.inputBudget);
         userBudget.setOnClickListener(this);
+
+        Places.initialize(getActivity().getApplicationContext(), "AIzaSyCGAnDlG13YXNfiwZbvjt0zAbVtnVx1UdU");
+
+        autocompleteFragment = (AutocompleteSupportFragment)
+               getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NotNull Place place) {
+                // TODO: Get info about the selected place.
+
+            }
+
+            @Override
+            public void onError(@NotNull Status status) {
+                // TODO: Handle the error.
+
+            }
+        });
     }
 
     @Override
