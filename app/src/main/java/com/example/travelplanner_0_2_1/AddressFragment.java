@@ -1,12 +1,17 @@
 package com.example.travelplanner_0_2_1;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.travelplanner_0_2_1.animation.LatLngInterpolator;
+import com.example.travelplanner_0_2_1.animation.MarkerAnimation;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -17,13 +22,15 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 
 
-public class AddressFragment extends Fragment implements OnMapReadyCallback{
+public class AddressFragment extends Fragment implements OnMapReadyCallback, FragmentResultListener{
 
     MapView addressMap;
     private GoogleMap googleMap;
-    private Marker marker;
+    private Marker homeMarker, sacStateMarker;
+    private Polyline directions;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,8 +48,33 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback{
         return view;
     }
 
-    public void setHomeMarker(){
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        getParentFragmentManager().setFragmentResultListener("homeAddress", this, this);
+    }
+
+    @Override
+    public void onFragmentResult(@NonNull String requestKey, @NonNull final Bundle result) {
+        //create new callback that will add marker
+        addressMap.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                        /*if(homeMarker != null)
+                            homeMarker.remove();
+                        LatLng home = new LatLng(bundle.getDouble("lat"), bundle.getDouble("lng"));
+                        homeMarker =  googleMap.addMarker(new MarkerOptions().position(home).title( bundle.getString("addressLoc")));*/
+                LatLng homePos = new LatLng(result.getDouble("lat"), result.getDouble("lng"));
+                if(homeMarker == null){
+                    homeMarker =  googleMap.addMarker(new MarkerOptions().position(homePos).title( result.getString("addressLoc")));
+                } else{
+                    MarkerAnimation.animateMarkerToGB(homeMarker, homePos, new LatLngInterpolator.Linear());
+                    //homeMarker.setPosition(homePos);
+                }
+            }
+        });
     }
 
     @Override
@@ -62,8 +94,6 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback{
         settings.setZoomControlsEnabled(true);
         settings.setMapToolbarEnabled(false);
     }
-
-    //https://developers.google.com/maps/documentation/android-sdk/start
 
     @Override
     public void onResume() {

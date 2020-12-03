@@ -70,8 +70,8 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         getHomeAddress.setCountries("US");
         getHomeAddress.setLocationBias(
                 RectangularBounds.newInstance(
-                    new LatLng(38.5607528 - 0.05, -121.4342785 + 0.05),
-                    new LatLng(38.5607528 + 0.05, -121.4342785 + 0.05)
+                    new LatLng(38.5607528 - 0.075, -121.4342785 + 0.075),
+                    new LatLng(38.5607528 + 0.075, -121.4342785 + 0.075)
                 )
         );
 
@@ -83,8 +83,16 @@ public class InputFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onPlaceSelected(@NotNull Place place) {
                address = place.getName();
-               goToNext.setText(R.string.go);
 
+               //passes address data to addressFragment through fragment manager
+               Bundle result = new Bundle();
+               result.putString("addressName", address);
+               result.putString("addressLoc", place.getAddress());
+               result.putDouble("lat", place.getLatLng().latitude);
+               result.putDouble("lng", place.getLatLng().longitude);
+               getChildFragmentManager().setFragmentResult("homeAddress", result);
+
+               goToNext.setText(R.string.go);
             }
 
             @Override
