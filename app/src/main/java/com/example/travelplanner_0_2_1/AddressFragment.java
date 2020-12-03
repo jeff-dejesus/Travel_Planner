@@ -12,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -20,7 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class AddressFragment extends Fragment implements OnMapReadyCallback{
 
-    private MapView addressMap;
+    MapView addressMap;
     private GoogleMap googleMap;
     private Marker marker;
 
@@ -34,11 +35,7 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback{
 
         addressMap.onResume(); // needed to get the map to display immediately
 
-        try {
-            MapsInitializer.initialize(getActivity().getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        MapsInitializer.initialize(getActivity().getApplicationContext());
 
         addressMap.getMapAsync(this);
         return view;
@@ -60,6 +57,10 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback{
 
         CameraPosition cameraPosition = new CameraPosition.Builder().target(sacState).zoom(10).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+        UiSettings settings = googleMap.getUiSettings();
+        settings.setZoomControlsEnabled(true);
+        settings.setMapToolbarEnabled(false);
     }
 
     //https://developers.google.com/maps/documentation/android-sdk/start

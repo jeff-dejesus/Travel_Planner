@@ -33,6 +33,7 @@ public class InputFragment extends Fragment implements View.OnClickListener {
     private TextView userBudget;
 
     private AutocompleteSupportFragment getHomeAddress;
+    private Fragment addressFragment;
     private String address;
 
     @Override
@@ -56,6 +57,8 @@ public class InputFragment extends Fragment implements View.OnClickListener {
 
         userBudget = view.findViewById(R.id.inputBudget);
         userBudget.setOnClickListener(this);
+
+        addressFragment = getChildFragmentManager().findFragmentById(R.id.display_address);
 
         String api_key = getString(R.string.google_maps_key);
         if (!Places.isInitialized())
@@ -81,6 +84,7 @@ public class InputFragment extends Fragment implements View.OnClickListener {
             public void onPlaceSelected(@NotNull Place place) {
                address = place.getName();
                goToNext.setText(R.string.go);
+
             }
 
             @Override
