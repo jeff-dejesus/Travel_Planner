@@ -10,40 +10,53 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <fragment
-            android:id="@+id/get_home_address"
-            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-            android:layout_width="351dp"
-            android:layout_height="41dp"
-            android:layout_marginTop="56dp"
+        <TextView
+            android:id="@+id/addressPrompt"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/address_prompt"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/display_address"
             android:name="com.example.travelplanner_0_2_1.AddressFragment"
-            android:layout_width="355dp"
-            android:layout_height="167dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="366dp"
+            android:layout_height="320dp"
             android:layout_marginBottom="16dp"
             android:background="@color/sacStateGreen"
             app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/get_home_address"
-            app:layout_constraintVertical_bias="0.072"
-            tools:layout="@layout/fragment_address" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout="@layout/fragment_address">
+
+        </androidx.fragment.app.FragmentContainerView>
+
+        <fragment
+            android:id="@+id/get_home_address"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_width="366dp"
+            android:layout_height="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addressPrompt" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
-            android:layout_width="345dp"
+            android:layout_width="366dp"
             android:layout_height="92dp"
-            android:layout_marginBottom="96dp"
+            android:layout_marginBottom="40dp"
             android:layout_weight="60"
             app:errorEnabled="true"
             app:helperText="Estimate your annual travel budget for Sac State"
+            app:helperTextTextColor="@color/colorBlack"
             app:layout_constraintBottom_toTopOf="@+id/goToNext"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
