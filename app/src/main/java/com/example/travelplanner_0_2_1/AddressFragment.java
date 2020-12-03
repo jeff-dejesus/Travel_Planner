@@ -15,6 +15,7 @@ import com.example.travelplanner_0_2_1.animation.LatLngInterpolator;
 import com.example.travelplanner_0_2_1.animation.MarkerAnimation;
 import com.example.travelplanner_0_2_1.directionhelpers.FetchUrl;
 import com.example.travelplanner_0_2_1.directionhelpers.TaskLoadedCallback;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -23,12 +24,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-
-//TODO: update camera view whenever the home position is changed
 
 public class AddressFragment extends Fragment implements OnMapReadyCallback, TaskLoadedCallback, FragmentResultListener {
 
@@ -71,8 +71,7 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback, Tas
                 .title("Sacramento State")
         );
 
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(SAC_STATE_LOC).zoom(10).build();
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        updateCamera(googleMap, null);
 
         UiSettings settings = googleMap.getUiSettings();
         settings.setZoomControlsEnabled(true);
@@ -81,9 +80,6 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback, Tas
 
     @Override
     public void onTaskDone(Object... values) {
-        if(directions != null){
-            directions.remove();
-        }
         directions = googleMap.addPolyline((PolylineOptions) values[0]);
     }
 
@@ -92,22 +88,28 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback, Tas
         //create new callback that will add marker
         addressMap.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(GoogleMap googleMap) {
+            public void onMapReady(final GoogleMap googleMap) {
                         /*if(homeMarker != null)
                             homeMarker.remove();
                         LatLng home = new LatLng(bundle.getDouble("lat"), bundle.getDouble("lng"));
                         homeMarker =  googleMap.addMarker(new MarkerOptions().position(home).title( bundle.getString("addressLoc")));*/
-                LatLng homePos = new LatLng(result.getDouble("lat"), result.getDouble("lng"));
+                final LatLng homePos = new LatLng(result.getDouble("lat"), result.getDouble("lng"));
                 if(homeMarker == null){
                     homeMarker =  googleMap.addMarker(new MarkerOptions().position(homePos).title( result.getString("addressLoc")));
+                    updateCamera(googleMap, homePos);
                     createDirections();
                 } else{
+                    if(directions != null){
+                        directions.remove();
+                    }
+
                     MarkerAnimation.animateMarkerToGB(homeMarker, homePos, new LatLngInterpolator.Linear());
-                    //homeMarker.setPosition(homePos);
+                    //waits for marker to finish moving in order to update the path from the marker
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         public void run() {
-                           createDirections();
+                            updateCamera(googleMap, homePos);
+                            createDirections();
                         }
                     }, MarkerAnimation.ANIMATION_DURATION);
                 }
@@ -115,10 +117,29 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback, Tas
         });
     }
 
-    public void createDirections(){
+    private void createDirections(){
         new FetchUrl(AddressFragment.this).execute(getUrl(homeMarker.getPosition(), SAC_STATE_LOC, "driving"), "driving");
     }
 
+    private void updateCamera(GoogleMap googleMap, LatLng homeLoc){
+        CameraPosition cameraPosition;
+        if(homeLoc != null ) {
+            LatLngBounds.Builder viewBuilder = new LatLngBounds.Builder();
+            viewBuilder.include(SAC_STATE_LOC);
+            viewBuilder.include(homeLoc);
+            LatLngBounds bounds = viewBuilder.build();
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 200);
+            googleMap.animateCamera(cameraUpdate);
+        } else{
+            cameraPosition = new CameraPosition.Builder()
+                    .target(SAC_STATE_LOC)
+                    .zoom(10)
+                    .build();
+            googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
+    }
+
+    //used to create the url to be used to get the directions
     private String getUrl(LatLng origin, LatLng dest, String directionMode) {
         // Origin of route
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
