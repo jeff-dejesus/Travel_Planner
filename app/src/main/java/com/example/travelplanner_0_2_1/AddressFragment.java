@@ -34,7 +34,7 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback, Tas
 
     private MapView addressMap;
     private GoogleMap googleMap;
-    private final LatLng SAC_STATE_LOC = new LatLng(38.5575016, -121.4276552);
+    public static final LatLng SAC_STATE_LOC = new LatLng(38.5575016, -121.4276552);
     private Marker homeMarker, sacStateMarker;
     private Polyline directions;
 
@@ -71,7 +71,11 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback, Tas
                 .title("Sacramento State")
         );
 
-        updateCamera(googleMap, null);
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(SAC_STATE_LOC)
+                .zoom(10)
+                .build();
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         UiSettings settings = googleMap.getUiSettings();
         settings.setZoomControlsEnabled(true);
@@ -89,27 +93,23 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback, Tas
         addressMap.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final GoogleMap googleMap) {
-                        /*if(homeMarker != null)
-                            homeMarker.remove();
-                        LatLng home = new LatLng(bundle.getDouble("lat"), bundle.getDouble("lng"));
-                        homeMarker =  googleMap.addMarker(new MarkerOptions().position(home).title( bundle.getString("addressLoc")));*/
                 final LatLng homePos = new LatLng(result.getDouble("lat"), result.getDouble("lng"));
-                if(homeMarker == null){
-                    homeMarker =  googleMap.addMarker(new MarkerOptions().position(homePos).title( result.getString("addressLoc")));
-                    updateCamera(googleMap, homePos);
+                updateCamera(googleMap, homePos);
+
+                if (homeMarker == null) {
+                    homeMarker = googleMap.addMarker(new MarkerOptions().position(homePos).title(result.getString("addressLoc")));
                     createDirections();
-                } else{
-                    if(directions != null){
+                } else {
+                    if (directions != null) {
                         directions.remove();
                     }
-
+                    homeMarker.setTitle(result.getString("addressLoc"));
                     MarkerAnimation.animateMarkerToGB(homeMarker, homePos, new LatLngInterpolator.Linear());
-                    //waits for marker to finish moving in order to update the path from the marker
+                    //handler waits for marker to finish moving in order to update the path from the marker
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         public void run() {
-                            updateCamera(googleMap, homePos);
-                            createDirections();
+                            createDirections(); // create directions again from new home
                         }
                     }, MarkerAnimation.ANIMATION_DURATION);
                 }
@@ -117,26 +117,17 @@ public class AddressFragment extends Fragment implements OnMapReadyCallback, Tas
         });
     }
 
-    private void createDirections(){
+    private void createDirections() {
         new FetchUrl(AddressFragment.this).execute(getUrl(homeMarker.getPosition(), SAC_STATE_LOC, "driving"), "driving");
     }
 
-    private void updateCamera(GoogleMap googleMap, LatLng homeLoc){
-        CameraPosition cameraPosition;
-        if(homeLoc != null ) {
-            LatLngBounds.Builder viewBuilder = new LatLngBounds.Builder();
-            viewBuilder.include(SAC_STATE_LOC);
-            viewBuilder.include(homeLoc);
-            LatLngBounds bounds = viewBuilder.build();
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 200);
-            googleMap.animateCamera(cameraUpdate);
-        } else{
-            cameraPosition = new CameraPosition.Builder()
-                    .target(SAC_STATE_LOC)
-                    .zoom(10)
-                    .build();
-            googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        }
+    private void updateCamera(GoogleMap googleMap, LatLng homeLoc) {
+        LatLngBounds.Builder viewBuilder = new LatLngBounds.Builder();
+        viewBuilder.include(SAC_STATE_LOC);
+        viewBuilder.include(homeLoc);
+        LatLngBounds bounds = viewBuilder.build();
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 200);
+        googleMap.animateCamera(cameraUpdate);
     }
 
     //used to create the url to be used to get the directions

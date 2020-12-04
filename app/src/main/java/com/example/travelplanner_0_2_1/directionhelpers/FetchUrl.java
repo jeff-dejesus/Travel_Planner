@@ -19,7 +19,7 @@ public class FetchUrl extends AsyncTask<String, Void, String> {
     private String directionMode = "driving";
 
     public FetchUrl(TaskLoadedCallback taskLoadedCallback) {
-       this.taskLoadedCallback = taskLoadedCallback;
+        this.taskLoadedCallback = taskLoadedCallback;
     }
 
     @Override

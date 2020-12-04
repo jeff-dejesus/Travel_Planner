@@ -2,6 +2,7 @@ package com.example.travelplanner_0_2_1;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -25,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
-public class InputFragment extends Fragment implements View.OnClickListener {
+public class InputFragment extends Fragment implements View.OnClickListener, PlaceSelectionListener {
 
 
     private NavController navController;
@@ -35,6 +36,8 @@ public class InputFragment extends Fragment implements View.OnClickListener {
     private AutocompleteSupportFragment getHomeAddress;
     private Fragment addressFragment;
     private String address;
+
+    private final double BIAS_RANGE = 0.075;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,47 +73,30 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         getHomeAddress.setCountries("US");
         getHomeAddress.setLocationBias(
                 RectangularBounds.newInstance(
-                    new LatLng(38.5607528 - 0.075, -121.4342785 + 0.075),
-                    new LatLng(38.5607528 + 0.075, -121.4342785 + 0.075)
+                        new LatLng(AddressFragment.SAC_STATE_LOC.latitude - BIAS_RANGE, AddressFragment.SAC_STATE_LOC.longitude - BIAS_RANGE),
+                        new LatLng(AddressFragment.SAC_STATE_LOC.latitude + BIAS_RANGE, AddressFragment.SAC_STATE_LOC.longitude + BIAS_RANGE)
                 )
         );
 
         //set what data types about each place we want to return
-        getHomeAddress.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME,Place.Field.LAT_LNG, Place.Field.ADDRESS));
+        getHomeAddress.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS));
 
-        //get the address that the user selescts
-        getHomeAddress.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+        //get the address that the user selects
+        getHomeAddress.setOnPlaceSelectedListener(this);
+        //requires special onclicklistener
+        getHomeAddress.getView().findViewById(R.id.places_autocomplete_clear_button).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPlaceSelected(@NotNull Place place) {
-               address = place.getName();
-
-               //passes address data to addressFragment through fragment manager
-               Bundle result = new Bundle();
-               result.putString("addressName", address);
-               result.putString("addressLoc", place.getAddress());
-               result.putDouble("lat", place.getLatLng().latitude);
-               result.putDouble("lng", place.getLatLng().longitude);
-               getChildFragmentManager().setFragmentResult("homeAddress", result);
-
-               goToNext.setText(R.string.go);
-            }
-
-            @Override
-            public void onError(@NotNull Status status) {
-                //create error message here
+            public void onClick(View v) {
+                getHomeAddress.setText(null);
+                goToNext.setText(R.string.skip);
             }
         });
+
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.inputBudget:
-                if (validateAddress(userBudget.getText().toString()))
-                    goToNext.setText(R.string.go);
-                else
-                    goToNext.setText(R.string.skip);
-                break;
             case R.id.goToNext:
                 //create the navigation action
                 InputFragmentDirections.ActionInputFragmentToFragmentMenu action = InputFragmentDirections.actionInputFragmentToFragmentMenu();
@@ -118,10 +104,9 @@ public class InputFragment extends Fragment implements View.OnClickListener {
                 action.setUserLocation(address);
 
                 String budget = userBudget.getText().toString();
-                if(!budget.matches(""))
-                    action.setUserBudget(Integer.parseInt(budget));
-                else
-                    action.setUserBudget(-1);
+                if (budget.matches(""))
+                    budget = "-1";
+                action.setUserBudget(Integer.parseInt(budget));
 
                 //navigate to the destination fragment
                 navController.navigate(action);
@@ -129,12 +114,24 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    //todo: validate the address the user inputs into the program
-    //input: string address submitted by the user.
-    //Output: true if address can be found on google maps
-    public boolean validateAddress(String address) {
-        //put code to verify address here
+    @Override
+    public void onPlaceSelected(@NonNull Place place) {
+        //store address
+        address = place.getName();
 
-        return address.equalsIgnoreCase("123");
+        //passes address data to addressFragment through fragment manager
+        Bundle result = new Bundle();
+        result.putString("addressName", address);
+        result.putString("addressLoc", place.getAddress());
+        result.putDouble("lat", place.getLatLng().latitude);
+        result.putDouble("lng", place.getLatLng().longitude);
+        getChildFragmentManager().setFragmentResult("homeAddress", result);
+
+        goToNext.setText(R.string.go);
+    }
+
+    @Override
+    public void onError(@NonNull Status status) {
+
     }
 }
