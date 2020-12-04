@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/fragmentMenu"
-        android:name="com.example.travelplanner_0_2_1.FragmentMenu"
+        android:name="com.example.travelplanner_0_2_1.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu">
         <action

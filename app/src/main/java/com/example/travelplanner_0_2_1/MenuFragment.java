@@ -17,15 +17,15 @@ import com.example.travelplanner_0_2_1.R;
 import org.jetbrains.annotations.NotNull;
 
 //read through this file to get a good understanding of how the Navigation with fragments work
-public class FragmentMenu extends Fragment implements View.OnClickListener {
+public class MenuFragment extends Fragment implements View.OnClickListener {
 
-    /* 
-    * NavController is the object that we use to control the navigation between fragments
-    * we call its navController.navigate(action) in order to move the screen to show a different
-    * fragment.
-    * 
-    * the action paramenter is detailed below and what it does
-    */
+    /*
+     * NavController is the object that we use to control the navigation between fragments
+     * we call its navController.navigate(action) in order to move the screen to show a different
+     * fragment.
+     *
+     * the action paramenter is detailed below and what it does
+     */
     private NavController navController;
     private String userLocation;
     private int userBudget;
@@ -53,12 +53,12 @@ public class FragmentMenu extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         //here we recieve the arguements passed from navigation they are stored in this object
-        FragmentMenuArgs args = FragmentMenuArgs.fromBundle(getArguments());
+        MenuFragmentArgs args = MenuFragmentArgs.fromBundle(getArguments());
 
         TextView menuInfo = view.findViewById(R.id.menuInfo);
 
         //store the variables inside the menu for when the user goes back in the app
-        userLocation= args.getUserLocation();
+        userLocation = args.getUserLocation();
         userBudget = args.getUserBudget();
 
         navController = Navigation.findNavController(view);
@@ -94,54 +94,54 @@ public class FragmentMenu extends Fragment implements View.OnClickListener {
         // of the action type to navigate to different actions.
         // The action object specifies the direction and parameters. See navigation/nav_graph.xml
         // 
-        FragmentMenuDirections.ActionFragmentMenuToDisplayDataFragment action;
-       switch(v.getId()){
-           case R.id.menuToCompare:
-               navController.navigate(R.id.action_fragmentMenu_to_comparisonFragment);
-               break;
-           case R.id.menuToPlanner:
-               navController.navigate(R.id.action_fragmentMenu_to_travelPlannerFragment);
-               break;
-           case R.id.displayCar:
-               //this first line inititalizes the action. Class is same as declaration 
-               action = FragmentMenuDirections.actionFragmentMenuToDisplayDataFragment();
-               
-               //we pass the parameters to the action just how setVar(var) would work on objects
-               //each parameter is "set + (parameterName)"
-               action.setVehicleType("car");
-               action.setUserBudget(userBudget);
-               action.setUserLocation(userLocation);
-               //then we call the navController to move 
-               navController.navigate(action);
-               break;
-           case R.id.displayMotorCycle:
-               action = FragmentMenuDirections.actionFragmentMenuToDisplayDataFragment();
-               action.setVehicleType("motorcycle");
-               action.setUserBudget(userBudget);
-               action.setUserLocation(userLocation);
-               navController.navigate(action);
-               break;
-           case R.id.displayTransit:
-                action = FragmentMenuDirections.actionFragmentMenuToDisplayDataFragment();
-               action.setVehicleType("transit");
-               action.setUserBudget(userBudget);
-               action.setUserLocation(userLocation);
-               navController.navigate(action);
-               break;
-           case R.id.displayBike:
-                action = FragmentMenuDirections.actionFragmentMenuToDisplayDataFragment();
-               action.setVehicleType("bike");
-               action.setUserBudget(userBudget);
-               action.setUserLocation(userLocation);
-               navController.navigate(action);
-               break;
-           case R.id.displayWalk:
-                action = FragmentMenuDirections.actionFragmentMenuToDisplayDataFragment();
-               action.setVehicleType("walk");
-               action.setUserBudget(userBudget);
-               action.setUserLocation(userLocation);
-               navController.navigate(action);
-               break;
-       }
+        MenuFragmentDirections.ActionFragmentMenuToDisplayDataFragment action;
+        switch (v.getId()) {
+            case R.id.menuToCompare:
+                navController.navigate(R.id.action_fragmentMenu_to_comparisonFragment);
+                break;
+            case R.id.menuToPlanner:
+                navController.navigate(R.id.action_fragmentMenu_to_travelPlannerFragment);
+                break;
+            case R.id.displayCar:
+                //this first line inititalizes the action. Class is same as declaration
+                action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment();
+
+                //we pass the parameters to the action just how setVar(var) would work on objects
+                //each parameter is "set + (parameterName)"
+                action.setVehicleType("car");
+                action.setUserBudget(userBudget);
+                action.setUserLocation(userLocation);
+                //then we call the navController to move
+                navController.navigate(action);
+                break;
+            case R.id.displayMotorCycle:
+                action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment();
+                action.setVehicleType("motorcycle");
+                action.setUserBudget(userBudget);
+                action.setUserLocation(userLocation);
+                navController.navigate(action);
+                break;
+            case R.id.displayTransit:
+                action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment();
+                action.setVehicleType("transit");
+                action.setUserBudget(userBudget);
+                action.setUserLocation(userLocation);
+                navController.navigate(action);
+                break;
+            case R.id.displayBike:
+                action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment();
+                action.setVehicleType("bike");
+                action.setUserBudget(userBudget);
+                action.setUserLocation(userLocation);
+                navController.navigate(action);
+                break;
+            case R.id.displayWalk:
+                action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment();
+                action.setVehicleType("walk");
+                action.setUserBudget(userBudget);
+                action.setUserLocation(userLocation);
+                navController.navigate(action);
+                break;
+        }
     }
 }
