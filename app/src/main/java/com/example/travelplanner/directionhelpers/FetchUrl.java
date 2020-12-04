@@ -1,10 +1,7 @@
-package com.example.travelplanner_0_2_1.directionhelpers;
+package com.example.travelplanner.directionhelpers;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-
-import com.example.travelplanner_0_2_1.AddressFragment;
 
 import java.io.BufferedReader;
 import java.io.IOException;

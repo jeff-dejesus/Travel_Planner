@@ -1,4 +1,4 @@
-package com.example.travelplanner_0_2_1.directionhelpers;
+package com.example.travelplanner.directionhelpers;
 
 import com.google.android.gms.maps.model.LatLng;
 

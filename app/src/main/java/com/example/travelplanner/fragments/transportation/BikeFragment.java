@@ -1,4 +1,4 @@
-package com.example.travelplanner_0_2_1;
+package com.example.travelplanner.fragments.transportation;
 
 import android.os.Bundle;
 
@@ -8,10 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class VehicleButtonFragment extends Fragment {
+import com.example.travelplanner.R;
 
-    public VehicleButtonFragment() {
-    }
+
+public class BikeFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,6 @@ public class VehicleButtonFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_vehicle_button, container, false);
+        return inflater.inflate(R.layout.fragment_bike, container, false);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.travelplanner_0_2_1;
+package com.example.travelplanner.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.travelplanner_0_2_1.R;
+import com.example.travelplanner.R;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.series.BarGraphSeries;

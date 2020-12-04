@@ -5,4 +5,4 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.travelplanner_0_2_1.MapsFragment" />
+    tools:context="com.example.travelplanner.fragments.MapsFragment" />

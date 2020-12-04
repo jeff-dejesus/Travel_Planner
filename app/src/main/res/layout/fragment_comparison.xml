@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.travelplanner_0_2_1.ComparisonFragment"
+    tools:context="com.example.travelplanner.fragments.ComparisonFragment"
     android:id="@+id/frameLayout" >
 
     <ScrollView

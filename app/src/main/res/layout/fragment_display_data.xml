@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.travelplanner_0_2_1.DisplayDataFragment">
+    tools:context="com.example.travelplanner.fragments.DisplayDataFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -142,7 +142,7 @@
 
             <fragment
                 android:id="@+id/mapFragment"
-                android:name="com.example.travelplanner_0_2_1.MapsFragment"
+                android:name="com.example.travelplanner.fragments.MapsFragment"
                 android:layout_width="365dp"
                 android:layout_height="262dp"
                 android:layout_gravity="center_horizontal" />
@@ -175,7 +175,7 @@
 
             <fragment
                 android:id="@+id/fragment"
-                android:name="com.example.travelplanner_0_2_1.transportation.CarFragment"
+                android:name="com.example.travelplanner.fragments.transportation.CarFragment"
                 android:layout_width="match_parent"
                 android:layout_height="293dp" />
 

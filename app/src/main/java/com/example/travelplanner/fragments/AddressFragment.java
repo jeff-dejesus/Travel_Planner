@@ -1,4 +1,4 @@
-package com.example.travelplanner_0_2_1;
+package com.example.travelplanner.fragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,10 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.travelplanner_0_2_1.animation.LatLngInterpolator;
-import com.example.travelplanner_0_2_1.animation.MarkerAnimation;
-import com.example.travelplanner_0_2_1.directionhelpers.FetchUrl;
-import com.example.travelplanner_0_2_1.directionhelpers.TaskLoadedCallback;
+import com.example.travelplanner.R;
+import com.example.travelplanner.animation.LatLngInterpolator;
+import com.example.travelplanner.animation.MarkerAnimation;
+import com.example.travelplanner.directionhelpers.FetchUrl;
+import com.example.travelplanner.directionhelpers.TaskLoadedCallback;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

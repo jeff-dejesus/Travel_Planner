@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.travelplanner_0_2_1.MainFragment"
+        android:name="com.example.travelplanner.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/inputFragment"
-        android:name="com.example.travelplanner_0_2_1.InputFragment"
+        android:name="com.example.travelplanner.fragments.InputFragment"
         android:label="fragment_input"
         tools:layout="@layout/fragment_input">
         <action
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/fragmentMenu"
-        android:name="com.example.travelplanner_0_2_1.MenuFragment"
+        android:name="com.example.travelplanner.fragments.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu">
         <action
@@ -74,7 +74,7 @@
 
     <fragment
         android:id="@+id/displayDataFragment"
-        android:name="com.example.travelplanner_0_2_1.DisplayDataFragment"
+        android:name="com.example.travelplanner.fragments.DisplayDataFragment"
         android:label="fragment_display_data"
         tools:layout="@layout/fragment_display_data">
         <action
@@ -113,7 +113,7 @@
 
     <fragment
         android:id="@+id/comparisonFragment"
-        android:name="com.example.travelplanner_0_2_1.ComparisonFragment"
+        android:name="com.example.travelplanner.fragments.ComparisonFragment"
         android:label="fragment_comparison"
         tools:layout="@layout/fragment_comparison">
         <action
@@ -143,7 +143,7 @@
 
     <fragment
         android:id="@+id/travelPlannerFragment"
-        android:name="com.example.travelplanner_0_2_1.TravelPlannerFragment"
+        android:name="com.example.travelplanner.fragments.TravelPlannerFragment"
         android:label="fragment_travel_planner"
         tools:layout="@layout/fragment_travel_planner">
         <action

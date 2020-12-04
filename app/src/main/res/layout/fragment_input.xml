@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.travelplanner_0_2_1.InputFragment">
+    tools:context="com.example.travelplanner.fragments.InputFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/display_address"
-            android:name="com.example.travelplanner_0_2_1.AddressFragment"
+            android:name="com.example.travelplanner.fragments.AddressFragment"
             android:layout_width="366dp"
             android:layout_height="320dp"
             android:layout_marginBottom="16dp"

@@ -1,4 +1,4 @@
-package com.example.travelplanner_0_2_1.animation;
+package com.example.travelplanner.animation;
 
 /* Copyright 2013 Google Inc.
    Licensed under Apache 2.0: http://www.apache.org/licenses/LICENSE-2.0.html */

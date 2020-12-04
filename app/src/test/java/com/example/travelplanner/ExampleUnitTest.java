@@ -1,4 +1,4 @@
-package com.example.travelplanner_0_1_1;
+package com.example.travelplanner;
 
 import org.junit.Test;
 

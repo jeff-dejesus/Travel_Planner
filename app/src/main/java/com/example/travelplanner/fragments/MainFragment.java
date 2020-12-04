@@ -1,6 +1,5 @@
-package com.example.travelplanner_0_2_1;
+package com.example.travelplanner.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 
-import com.example.travelplanner_0_2_1.R;
+import com.example.travelplanner.R;
 
 import org.jetbrains.annotations.NotNull;
 

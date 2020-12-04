@@ -1,18 +1,17 @@
-package com.example.travelplanner_0_2_1;
+package com.example.travelplanner.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.travelplanner_0_2_1.R;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
+import com.example.travelplanner.R;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -36,6 +35,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     private Button displayTransit;
     private Button displayBike;
     private Button displayWalk;
+    private VehicleButtonFragment displayCar1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

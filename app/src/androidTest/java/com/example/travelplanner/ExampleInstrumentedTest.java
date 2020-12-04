@@ -1,4 +1,4 @@
-package com.example.travelplanner_0_2_1;
+package com.example.travelplanner;
 
 import android.content.Context;
 
