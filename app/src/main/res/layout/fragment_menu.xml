@@ -54,6 +54,7 @@
             android:paddingBottom="100dp">
 
             <LinearLayout
+                android:id="@+id/orderedLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -61,7 +62,7 @@
 
                 <!--car-->
                 <fragment
-                    android:id="@+id/fragment2"
+                    android:id="@+id/fragment0"
                     android:name="com.example.travelplanner.fragments.VehicleButtonFragment"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
@@ -69,7 +70,7 @@
 
                 <!--motorcycle-->
                 <fragment
-                    android:id="@+id/fragment3"
+                    android:id="@+id/fragment1"
                     android:name="com.example.travelplanner.fragments.VehicleButtonFragment"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
@@ -77,7 +78,7 @@
 
                 <!--transit-->
                 <fragment
-                    android:id="@+id/fragment4"
+                    android:id="@+id/fragment2"
                     android:name="com.example.travelplanner.fragments.VehicleButtonFragment"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
@@ -85,7 +86,7 @@
 
                 <!--bike-->
                 <fragment
-                    android:id="@+id/fragment5"
+                    android:id="@+id/fragment3"
                     android:name="com.example.travelplanner.fragments.VehicleButtonFragment"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
@@ -93,43 +94,11 @@
 
                 <!--walk-->
                 <fragment
-                    android:id="@+id/fragment6"
+                    android:id="@+id/fragment4"
                     android:name="com.example.travelplanner.fragments.VehicleButtonFragment"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
                     android:layout_marginBottom="10dp"/>
-
-                <Button
-                    android:id="@+id/displayCar"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/car" />
-
-                <Button
-                    android:id="@+id/displayMotorCycle"
-                    android:layout_width="match_parent"
-                    android:layout_height="99dp"
-                    android:text="motorcycle" />
-
-                <Button
-                    android:id="@+id/displayTransit"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:text="transit" />
-
-                <Button
-                    android:id="@+id/displayBike"
-                    android:layout_width="match_parent"
-                    android:layout_height="82dp"
-                    android:text="bike" />
-
-                <Button
-                    android:id="@+id/displayWalk"
-                    android:layout_width="match_parent"
-                    android:layout_height="104dp"
-                    android:text="walk" />
-
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

@@ -30,12 +30,12 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     private int userBudget;
     private Button menuToCompare;
     private Button menuToPlanner;
-    private Button displayCar;
-    private Button displayMotorCycle;
-    private Button displayTransit;
-    private Button displayBike;
-    private Button displayWalk;
-    private VehicleButtonFragment displayCar1;
+
+    private VehicleButtonFragment display0;
+    private VehicleButtonFragment display1;
+    private VehicleButtonFragment display2;
+    private VehicleButtonFragment display3;
+    private VehicleButtonFragment display4;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //here we recieve the arguements passed from navigation they are stored in this object
+        //here we receive the arguments passed from navigation they are stored in this object
         MenuFragmentArgs args = MenuFragmentArgs.fromBundle(getArguments());
 
         TextView menuInfo = view.findViewById(R.id.menuInfo);
@@ -62,30 +62,56 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         userBudget = args.getUserBudget();
 
         navController = Navigation.findNavController(view);
-        view.findViewById(R.id.displayCar).setOnClickListener(this);
 
         menuToCompare = view.findViewById(R.id.menuToCompare);
         menuToCompare.setOnClickListener(this);
         menuToPlanner = view.findViewById(R.id.menuToPlanner);
         menuToPlanner.setOnClickListener(this);
 
+        display0 = (VehicleButtonFragment) getChildFragmentManager().findFragmentById(R.id.fragment0);
+        display1 = (VehicleButtonFragment) getChildFragmentManager().findFragmentById(R.id.fragment1);
+        display2 = (VehicleButtonFragment) getChildFragmentManager().findFragmentById(R.id.fragment2);
+        display3 = (VehicleButtonFragment) getChildFragmentManager().findFragmentById(R.id.fragment3);
+        display4 = (VehicleButtonFragment) getChildFragmentManager().findFragmentById(R.id.fragment4);
+
         //TODO: sort the buttons so modes that seem more optimal for the user are presented first
 
-        displayCar = view.findViewById(R.id.displayCar);
-        displayCar.setOnClickListener(this);
-        displayMotorCycle = view.findViewById(R.id.displayMotorCycle);
-        displayMotorCycle.setOnClickListener(this);
-        displayTransit = view.findViewById(R.id.displayTransit);
-        displayTransit.setOnClickListener(this);
-        displayBike = view.findViewById(R.id.displayBike);
-        displayBike.setOnClickListener(this);
-        displayWalk = view.findViewById(R.id.displayWalk);
-        displayWalk.setOnClickListener(this);
+        //to sort out the order, reorder the array below, or in the create buttons, reorder which is set first
+        //reminder: display 0 will always be on top and display 4 will always be the last 1 so you have to set their text
+        //to a different mode of transportation in order for it to be in different order
+        VehicleButtonFragment[] fragmentOrder = new VehicleButtonFragment[]{display2, display3, display1, display4, display0};
+        createButtons(fragmentOrder);
     }
 
-    //todo: clean up switch so less code. can take out some cases in replace of IF statement
+    private void createButtons(VehicleButtonFragment[] fragmentOrder) {
+        fragmentOrder[0].setBackgroundImg(R.drawable.car_image);
+        fragmentOrder[0].setTitle("Car");
+        fragmentOrder[0].setInfo("click this to get info on car");
+        fragmentOrder[0].setOnClickListener(this);
+
+        fragmentOrder[1].setBackgroundImg(R.drawable.motorcycle_image);
+        fragmentOrder[1].setTitle("Motorcycle");
+        fragmentOrder[1].setInfo("click this to get info on motorcycle");
+        fragmentOrder[1].setOnClickListener(this);
+
+        fragmentOrder[2].setBackgroundImg(R.drawable.transit_image);
+        fragmentOrder[2].setTitle("Transit");
+        fragmentOrder[2].setInfo("click this to get info on Transit");
+        fragmentOrder[2].setOnClickListener(this);
+
+        fragmentOrder[3].setBackgroundImg(R.drawable.bike_image);
+        fragmentOrder[3].setTitle("Bike");
+        fragmentOrder[3].setInfo("click this to get info on Bike");
+        fragmentOrder[3].setOnClickListener(this);
+
+        fragmentOrder[4].setBackgroundImg(R.drawable.walking_image);
+        fragmentOrder[4].setTitle("Walk");
+        fragmentOrder[4].setInfo("click this to get info on walk");
+        fragmentOrder[4].setOnClickListener(this);
+    }
+
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
         // the action is an instance of a generated class. the navigation generates the code
         // all we have to do is reference the right Action class. All action objects are located in
         // different generated classes. the class name is "(Class name) + Directions"
@@ -95,51 +121,56 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         // The action object specifies the direction and parameters. See navigation/nav_graph.xml
         // 
         MenuFragmentDirections.ActionFragmentMenuToDisplayDataFragment action;
-        switch (v.getId()) {
+        switch (view.getId()) {
             case R.id.menuToCompare:
                 navController.navigate(R.id.action_fragmentMenu_to_comparisonFragment);
                 break;
             case R.id.menuToPlanner:
                 navController.navigate(R.id.action_fragmentMenu_to_travelPlannerFragment);
                 break;
-            case R.id.displayCar:
-                //this first line inititalizes the action. Class is same as declaration
+            case R.id.vehicleButtonSelect:
                 action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment();
 
-                //we pass the parameters to the action just how setVar(var) would work on objects
-                //each parameter is "set + (parameterName)"
-                action.setVehicleType("car");
+                if (view == display0.getVehicleSelect())
+                    action.setVehicleType(
+                            display0.getTitle()
+                                    .getText()
+                                    .toString()
+                                    .toLowerCase()
+                    );
+                else if (view == display1.getVehicleSelect())
+                    action.setVehicleType(
+                            display1.getTitle()
+                                    .getText()
+                                    .toString()
+                                    .toLowerCase()
+                    );
+                else if (view == display2.getVehicleSelect())
+                    action.setVehicleType(
+                            display2.getTitle()
+                                    .getText()
+                                    .toString()
+                                    .toLowerCase()
+                    );
+                else if (view == display3.getVehicleSelect())
+                    action.setVehicleType(
+                            display3.getTitle()
+                                    .getText()
+                                    .toString()
+                                    .toLowerCase()
+                    );
+                else if (view == display4.getVehicleSelect())
+                    action.setVehicleType(
+                            display4
+                                    .getTitle()
+                                    .getText()
+                                    .toString()
+                                    .toLowerCase()
+                    );
+
                 action.setUserBudget(userBudget);
                 action.setUserLocation(userLocation);
                 //then we call the navController to move
-                navController.navigate(action);
-                break;
-            case R.id.displayMotorCycle:
-                action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment();
-                action.setVehicleType("motorcycle");
-                action.setUserBudget(userBudget);
-                action.setUserLocation(userLocation);
-                navController.navigate(action);
-                break;
-            case R.id.displayTransit:
-                action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment();
-                action.setVehicleType("transit");
-                action.setUserBudget(userBudget);
-                action.setUserLocation(userLocation);
-                navController.navigate(action);
-                break;
-            case R.id.displayBike:
-                action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment();
-                action.setVehicleType("bike");
-                action.setUserBudget(userBudget);
-                action.setUserLocation(userLocation);
-                navController.navigate(action);
-                break;
-            case R.id.displayWalk:
-                action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment();
-                action.setVehicleType("walk");
-                action.setUserBudget(userBudget);
-                action.setUserLocation(userLocation);
                 navController.navigate(action);
                 break;
         }
