@@ -43,6 +43,7 @@
         anyone. You may put a general location if you don\'t want to put your actual address but
         that will reduce the accuracy of our recommendations for you</string>
     <string name="vehicle_btn_bckgrnd_des">image of whichever type this button will send user to</string>
+    <string name="select">Select</string>
 
     <string-array name="vehicle_array_subtypes">
         <item>car</item>

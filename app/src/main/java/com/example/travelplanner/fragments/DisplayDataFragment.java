@@ -55,7 +55,8 @@ public class DisplayDataFragment extends Fragment implements View.OnClickListene
         displayVehicleImage = view.findViewById(R.id.displayVehicleImage);
         displayVehicleTitle = view.findViewById(R.id.displayTitleVehicle);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),R.layout.spinner_item, getResources().getStringArray(R.array.vehicle_array));
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<String>(getContext(),R.layout.spinner_item, getResources().getStringArray(R.array.vehicle_array));
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
 
         displayVehicleTitle.setAdapter(adapter);
@@ -88,23 +89,18 @@ public class DisplayDataFragment extends Fragment implements View.OnClickListene
             case"car":
             default:
                 displayVehicleImage.setImageResource(R.drawable.car_image);
-                //displayVehicleTitle.setText("Car");
                 break;
             case"motorcycle":
                 displayVehicleImage.setImageResource(R.drawable.motorcycle_image);
-                //displayVehicleTitle.setText("Motorcycle");
                 break;
             case "transit":
                 displayVehicleImage.setImageResource(R.drawable.transit_image);
-                //displayVehicleTitle.setText("Transit");
                 break;
             case "bike":
                 displayVehicleImage.setImageResource(R.drawable.bike_image);
-               // displayVehicleTitle.setText("Bike");
                 break;
             case"walk":
                 displayVehicleImage.setImageResource(R.drawable.walking_image);
-               // displayVehicleTitle.setText("Walk");
                 break;
 
         }
@@ -118,7 +114,7 @@ public class DisplayDataFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
+        //do nothing
     }
 
     private double calculateCost(String vehicleType){
