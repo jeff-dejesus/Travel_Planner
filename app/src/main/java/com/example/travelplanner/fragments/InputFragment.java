@@ -1,6 +1,7 @@
 package com.example.travelplanner.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class InputFragment extends Fragment implements View.OnClickListener, Pla
     private AutocompleteSupportFragment getHomeAddress;
     private Fragment addressFragment;
     private String address;
+    private LatLng addressLatLng;
 
     private final double BIAS_RANGE = 0.075;
 
@@ -64,6 +66,7 @@ public class InputFragment extends Fragment implements View.OnClickListener, Pla
         if (!Places.isInitialized())
             Places.initialize(getActivity().getApplicationContext(), api_key);
 
+        //Sets up the AutocompleteSupportFragment
         getHomeAddress = (AutocompleteSupportFragment) getChildFragmentManager().findFragmentById(R.id.get_home_address);
 
         //bounds it to specific area
@@ -80,51 +83,55 @@ public class InputFragment extends Fragment implements View.OnClickListener, Pla
 
         //get the address that the user selects
         getHomeAddress.setOnPlaceSelectedListener(this);
-        //requires special onclicklistener
-        getHomeAddress.getView().findViewById(R.id.places_autocomplete_clear_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getHomeAddress.setText(null);
-                goToNext.setText(R.string.skip);
-            }
-        });
-
+        getHomeAddress.getView().findViewById(R.id.places_autocomplete_clear_button).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.goToNext:
-                //create the navigation action
-                InputFragmentDirections.ActionInputFragmentToFragmentMenu action = InputFragmentDirections.actionInputFragmentToFragmentMenu();
-
-                action.setUserLocation(address);
+                InputFragmentDirections.ActionInputFragmentToFragmentMenu action;
+                action = InputFragmentDirections.actionInputFragmentToFragmentMenu();
 
                 String budget = userBudget.getText().toString();
+
                 if (budget.matches(""))
                     budget = "-1";
                 action.setUserBudget(Integer.parseInt(budget));
 
-                //navigate to the destination fragment
+                action.setUserLocation(address);
+                action.setCoordinates(addressLatLng);
+
                 navController.navigate(action);
                 break;
+            case R.id.places_autocomplete_clear_button:
+                getHomeAddress.setText(null);
+                goToNext.setText(R.string.skip);
+                address = "";
+                addressLatLng = null;
+                //tells the google map to clear the map
+                getChildFragmentManager().setFragmentResult("clearMap", null);
         }
     }
 
+    //listener for when the user selects an address from autocompletefragment
     @Override
     public void onPlaceSelected(@NonNull Place place) {
         //store address
-        address = place.getName();
+        address = place.getAddress();
+        addressLatLng = place.getLatLng();
 
         //passes address data to addressFragment through fragment manager
         Bundle result = new Bundle();
-        result.putString("addressName", address);
-        result.putString("addressLoc", place.getAddress());
-        result.putDouble("lat", place.getLatLng().latitude);
-        result.putDouble("lng", place.getLatLng().longitude);
+        result.putString("addressName", place.getName());
+        result.putString("addressLoc", address);
+        result.putDouble("lat", addressLatLng.latitude);
+        result.putDouble("lng", addressLatLng.longitude);
+        //sends address to map to update the map
         getChildFragmentManager().setFragmentResult("homeAddress", result);
 
         goToNext.setText(R.string.go);
+
     }
 
     @Override

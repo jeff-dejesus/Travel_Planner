@@ -7,20 +7,6 @@
     tools:context=".fragments.VehicleButtonFragment">
 
 
-    <!--
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:padding="6dp"
-        android:src="@drawable/car_image" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/round_frame" />-->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,6 +16,8 @@
             android:id="@+id/vehicleButtonBackground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/vehicle_btn_bckgrnd_des"
+            android:foreground="#5F000000"
             android:scaleType="centerCrop"
             android:src="@drawable/car_image" />
 
@@ -39,14 +27,18 @@
 
             <TextView
                 android:id="@+id/vehicleButtonTitle"
-                android:layout_width="216dp"
-                android:layout_height="34dp"
+                android:layout_width="254dp"
+                android:layout_height="35dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="title"
+                android:fontFamily="@font/trajan_pro_bold"
+                android:shadowColor="@color/colorBlack"
+                android:shadowRadius="15"
+                android:text="@string/car"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
-                android:textSize="30sp"
+                android:textSize="32sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,9 +49,13 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/round_frame"
-                android:backgroundTint="#D3FFFFFF"
-                android:padding="5dp"
-                android:text="info"
+                android:backgroundTint="#CDFFFFFF"
+                android:fontFamily="@font/lato"
+                android:paddingStart="8dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="2dp"
+                android:text="@string/app_name"
                 android:textColor="@color/colorBlack"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -69,7 +65,9 @@
                 android:layout_width="79dp"
                 android:layout_height="132dp"
                 android:layout_marginEnd="8dp"
-                android:text="Select"
+                android:backgroundTint="@color/colorWhite"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/go"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

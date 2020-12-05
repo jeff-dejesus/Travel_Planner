@@ -31,11 +31,12 @@
             android:src="@drawable/nickname_logo" />
 
         <ImageView
-            android:id="@+id/chromaticLineUpper"
+            android:id="@+id/gradient"
             android:layout_width="match_parent"
             android:layout_height="6dp"
             android:scaleType="fitXY"
-            android:src="@drawable/multi_color_bar" />
+            android:src="@drawable/multi_color_bar"
+            app:srcCompat="@drawable/gradient" />
 
         <TextView
             android:id="@+id/appName"
@@ -50,7 +51,7 @@
             android:textSize="42sp" />
 
         <ImageView
-            android:id="@+id/chromaticLineLower"
+            android:id="@+id/gradient2"
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:scaleType="fitXY"

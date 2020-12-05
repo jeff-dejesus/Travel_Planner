@@ -28,19 +28,20 @@
                     android:src="@drawable/car_image"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
-                <TextView
+                <Spinner
                     android:id="@+id/displayTitleVehicle"
-                    android:layout_width="299dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="16dp"
-                    android:fontFamily="@font/trajan_pro_bold"
-                    android:text="@string/car"
+                    android:background="@drawable/arrow_drop_down_24"
+                    android:entries="@array/vehicle_array"
+                    android:spinnerMode="dropdown"
                     android:textAlignment="center"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="42sp"
                     app:layout_constraintBottom_toBottomOf="@+id/displayVehicleImage"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
