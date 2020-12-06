@@ -37,6 +37,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     private VehicleButtonFragment display3;
     private VehicleButtonFragment display4;
 
+    private String[] vehicleDisplayOrder = new String[5];
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,26 +90,31 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         fragmentOrder[0].setTitle("Car");
         fragmentOrder[0].setInfo("click this to get info on car");
         fragmentOrder[0].setOnClickListener(this);
+        vehicleDisplayOrder[0] = "car";
 
         fragmentOrder[1].setBackgroundImg(R.drawable.motorcycle_image);
         fragmentOrder[1].setTitle("Motorcycle");
         fragmentOrder[1].setInfo("click this to get info on motorcycle");
         fragmentOrder[1].setOnClickListener(this);
+        vehicleDisplayOrder[1] = "motorcycle";
 
         fragmentOrder[2].setBackgroundImg(R.drawable.transit_image);
         fragmentOrder[2].setTitle("Transit");
         fragmentOrder[2].setInfo("click this to get info on Transit");
         fragmentOrder[2].setOnClickListener(this);
+        vehicleDisplayOrder[2] = "transit";
 
         fragmentOrder[3].setBackgroundImg(R.drawable.bike_image);
         fragmentOrder[3].setTitle("Bike");
         fragmentOrder[3].setInfo("click this to get info on Bike");
         fragmentOrder[3].setOnClickListener(this);
+        vehicleDisplayOrder[3] = "bike";
 
         fragmentOrder[4].setBackgroundImg(R.drawable.walking_image);
         fragmentOrder[4].setTitle("Walk");
         fragmentOrder[4].setInfo("click this to get info on walk");
         fragmentOrder[4].setOnClickListener(this);
+        vehicleDisplayOrder[4] = "walk";
     }
 
     @Override
@@ -129,48 +136,21 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                 navController.navigate(R.id.action_fragmentMenu_to_travelPlannerFragment);
                 break;
             case R.id.vehicleButtonSelect:
-                action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment();
+                action = MenuFragmentDirections.actionFragmentMenuToDisplayDataFragment(vehicleDisplayOrder);
 
                 if (view == display0.getVehicleSelect())
-                    action.setVehicleType(
-                            display0.getTitle()
-                                    .getText()
-                                    .toString()
-                                    .toLowerCase()
-                    );
+                    action.setVehicleType(vehicleDisplayOrder[0]);
                 else if (view == display1.getVehicleSelect())
-                    action.setVehicleType(
-                            display1.getTitle()
-                                    .getText()
-                                    .toString()
-                                    .toLowerCase()
-                    );
+                    action.setVehicleType(vehicleDisplayOrder[1]);
                 else if (view == display2.getVehicleSelect())
-                    action.setVehicleType(
-                            display2.getTitle()
-                                    .getText()
-                                    .toString()
-                                    .toLowerCase()
-                    );
+                    action.setVehicleType(vehicleDisplayOrder[2]);
                 else if (view == display3.getVehicleSelect())
-                    action.setVehicleType(
-                            display3.getTitle()
-                                    .getText()
-                                    .toString()
-                                    .toLowerCase()
-                    );
+                    action.setVehicleType(vehicleDisplayOrder[3]);
                 else if (view == display4.getVehicleSelect())
-                    action.setVehicleType(
-                            display4
-                                    .getTitle()
-                                    .getText()
-                                    .toString()
-                                    .toLowerCase()
-                    );
+                    action.setVehicleType(vehicleDisplayOrder[4]);
 
                 action.setUserBudget(userBudget);
                 action.setUserLocation(userLocation);
-                //then we call the navController to move
                 navController.navigate(action);
                 break;
         }

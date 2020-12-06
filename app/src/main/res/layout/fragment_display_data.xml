@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.travelplanner.fragments.DisplayDataFragment">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/sacStateGold">
+        android:id="@+id/displayScrollView"
+        android:layout_width="405dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +42,7 @@
 
                 <Spinner
                     android:id="@+id/displayTitleVehicle"
-                    android:layout_width="300dp"
+                    android:layout_width="375dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/spinner"
@@ -50,9 +57,9 @@
             <ImageView
                 android:id="@+id/displayDivider1"
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
+                android:layout_height="4dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/multi_color_bar" />
+                android:src="@drawable/gradient" />
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -97,9 +104,10 @@
             <ImageView
                 android:id="@+id/displayDivider2"
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
+                android:layout_height="4dp"
+                android:rotationY="180"
                 android:scaleType="fitXY"
-                android:src="@drawable/multi_color_bar" />
+                android:src="@drawable/gradient" />
 
             <TextView
                 android:id="@+id/vehicleInfo"
@@ -107,45 +115,74 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
                 android:fontFamily="@font/lato"
-                android:text="@string/app_string_info"
-                android:textColor="@color/colorBlack" />
-
-            <ImageView
-                android:id="@+id/displayDivider3"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/multi_color_bar" />
+                android:padding="5dp"
+                android:text="vehicle description, why you should use this vehicle, about 4-5 lines of text max"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/vehicleCostInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/hornetYellow"
+                android:fontFamily="@font/lato"
+                android:padding="1dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="0dp"
                 android:text="Cost"
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/vehicleCostInfoBreakdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sacStateGreen"
+                android:fontFamily="@font/lato_italic"
+                android:padding="1dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="0dp"
+                android:text="gas: \ninsurance:\netc: \nper person: (if rideshare)\nAverage cost(min - max): avg cost"
+                android:textColor="@color/colorWhite" />
+
+            <TextView
                 android:id="@+id/vehicleEmissionsInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/sacStateGreen"
+                android:fontFamily="@font/lato"
+                android:padding="1dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="0dp"
                 android:text="carbon emissions"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/vehicleDistanceInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/sacStateGreen"
+                android:fontFamily="@font/lato"
+                android:padding="1dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="0dp"
                 android:text="distance"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/displayDivider3"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/gradient" />
 
             <fragment
                 android:id="@+id/mapFragment"
                 android:name="com.example.travelplanner.fragments.MapsFragment"
-                android:layout_width="365dp"
-                android:layout_height="262dp"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
                 android:layout_gravity="center_horizontal" />
 
             <TableRow
@@ -153,11 +190,20 @@
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal">
 
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato"
+                    android:text="STARTING POSITION:"
+                    android:textColor="@color/colorBlack" />
+
                 <Button
                     android:id="@+id/distanceFromHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorWhite"
+                    android:fontFamily="@font/lato"
                     android:text="From home" />
 
                 <Button
@@ -165,6 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorWhite"
+                    android:fontFamily="@font/lato"
                     android:text="From Sac State" />
             </TableRow>
 
@@ -174,36 +221,64 @@
                 android:layout_height="wrap_content"
                 android:text="(specific data for the mode of transportation) Create own fragment for data" />
 
+            <ImageView
+                android:id="@+id/displayDivider4"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:rotationY="180"
+                android:scaleType="fitXY"
+                android:src="@drawable/gradient" />
+
             <fragment
                 android:id="@+id/fragment"
                 android:name="com.example.travelplanner.fragments.transportation.CarFragment"
                 android:layout_width="match_parent"
                 android:layout_height="293dp" />
 
-            <TableRow
+            <ImageView
+                android:id="@+id/displayDivider5"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal">
-
-                <Button
-                    android:id="@+id/displayToComparison"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorWhite"
-                    android:text="compare this" />
-
-                <Button
-                    android:id="@+id/displayToPlanner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorWhite"
-                    android:text="add to my plan" />
-            </TableRow>
+                android:layout_height="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/gradient" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="80dp" />
 
         </LinearLayout>
     </ScrollView>
-</FrameLayout>
+
+    <TableRow
+        android:id="@+id/tableRow"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:background="@color/colorBlack"
+        android:gravity="center|center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/displayToComparison"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:backgroundTint="@color/colorWhite"
+            android:text="compare this" />
+
+        <Button
+            android:id="@+id/displayToPlanner"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:backgroundTint="@color/colorWhite"
+            android:text="add to my plan" />
+
+        <Button
+            android:id="@+id/showNextDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:background="@drawable/next_button"
+            android:backgroundTint="@color/colorWhite"
+            android:text="Show me next option" />
+    </TableRow>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

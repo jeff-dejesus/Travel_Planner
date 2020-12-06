@@ -31,6 +31,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+//TODO: animate the custom buttons. This isn't related to any certain fragment
+// https://stackoverflow.com/questions/7175873/how-to-set-button-click-effect-in-android
+
 public class AddressFragment extends Fragment implements OnMapReadyCallback, TaskLoadedCallback, FragmentResultListener {
 
     /*Google maps fragment that is used for displaying the initial route from the users home to Sac State within the InputFragment.java*/

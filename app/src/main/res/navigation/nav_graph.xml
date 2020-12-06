@@ -119,6 +119,9 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="car_sg" />
+        <argument
+            android:name="vehicleDisplayOrder"
+            app:argType="string[]" />
     </fragment>
 
     <fragment

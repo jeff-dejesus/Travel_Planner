@@ -9,11 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/redwoodGroveGreen"
+        android:gravity="center"
         android:orientation="vertical">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="51dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,11 +37,12 @@
 
         <TextView
             android:id="@+id/menuInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Different Modes of Transportation. Click on one to get more info about it"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite" />
+            android:layout_width="395dp"
+            android:layout_height="47dp"
+            android:text="Here are the different ways you can get to school. Click on one to get more info about it"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -66,7 +64,7 @@
                     android:name="com.example.travelplanner.fragments.VehicleButtonFragment"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp" />
 
                 <!--motorcycle-->
                 <fragment
@@ -74,7 +72,7 @@
                     android:name="com.example.travelplanner.fragments.VehicleButtonFragment"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp" />
 
                 <!--transit-->
                 <fragment
@@ -82,7 +80,7 @@
                     android:name="com.example.travelplanner.fragments.VehicleButtonFragment"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp" />
 
                 <!--bike-->
                 <fragment
@@ -90,7 +88,7 @@
                     android:name="com.example.travelplanner.fragments.VehicleButtonFragment"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp" />
 
                 <!--walk-->
                 <fragment
@@ -98,7 +96,7 @@
                     android:name="com.example.travelplanner.fragments.VehicleButtonFragment"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
